@@ -24,6 +24,9 @@ const documentSchema = new Schema(
       title: { type: String, required: true },
       description: { type: String },
       tagline: { type: String },
+      whoCanApply: { type: String },
+      processingTime: { type: String },
+      fees: { type: String },
     },
     requirements: [
       {
@@ -32,6 +35,7 @@ const documentSchema = new Schema(
         description: { type: String },
         examples: [{ type: String }],
         howToGet: { type: String },
+        isOptional: { type: Boolean, default: false },
       },
     ],
     externalLinks: [
@@ -41,7 +45,9 @@ const documentSchema = new Schema(
         type: {
           type: String,
           enum: ["official", "form", "helpline"],
+          required: true,
         },
+        description: { type: String },
       },
     ],
     applySteps: [
@@ -55,10 +61,17 @@ const documentSchema = new Schema(
         title: { type: String, required: true },
         description: { type: String },
         tip: { type: String },
+        warning: { type: String },
+      },
+    ],
+    faqs: [
+      {
+        question: { type: String, required: true },
+        answer: { type: String, required: true },
       },
     ],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const Document = model("Document", documentSchema);
