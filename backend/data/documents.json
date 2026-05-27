@@ -1,0 +1,196 @@
+[
+  {
+    "docId": "aadhaar-card",
+    "category": "identity",
+    "icon": "Fingerprint",
+    "isActive": true,
+    "info": {
+      "title": "Aadhaar Card",
+      "description": "Aadhaar is a 12-digit unique identity number that can be obtained voluntarily by residents of India, based on their biometric and demographic data. It is issued by the Unique Identification Authority of India (UIDAI).",
+      "tagline": "Your Unique Digital Identity"
+    },
+    "requirements": [
+      {
+        "order": 1,
+        "name": "Proof of Identity (PoI)",
+        "description": "A valid document showing your full name and a clear photograph.",
+        "examples": [
+          "Passport",
+          "PAN Card",
+          "Voter ID Card",
+          "Driving License",
+          "Ration Card"
+        ],
+        "howToGet": "Can be obtained from their respective state or central government issuing departments."
+      },
+      {
+        "order": 2,
+        "name": "Proof of Address (PoA)",
+        "description": "A valid document detailing your current residential address.",
+        "examples": [
+          "Electricity Bill (last 3 months)",
+          "Water Bill",
+          "Bank Statement",
+          "Passport",
+          "Voter ID Card"
+        ],
+        "howToGet": "Obtain from your service providers, bank branch, or municipal bodies."
+      },
+      {
+        "order": 3,
+        "name": "Proof of Date of Birth (DoB)",
+        "description": "An official certificate or document stating your exact date of birth.",
+        "examples": [
+          "Birth Certificate",
+          "SSLC Certificate",
+          "Passport",
+          "PAN Card"
+        ],
+        "howToGet": "Apply at local municipal birth registrar, school board, or income tax department."
+      }
+    ],
+    "externalLinks": [
+      {
+        "label": "UIDAI Official Website",
+        "url": "https://uidai.gov.in/",
+        "type": "official"
+      },
+      {
+        "label": "Book Appointment Online",
+        "url": "https://appointments.uidai.gov.in/",
+        "type": "form"
+      },
+      {
+        "label": "Toll-Free Helpline (1947)",
+        "url": "tel:1947",
+        "type": "helpline"
+      }
+    ],
+    "applySteps": [
+      {
+        "stepNumber": 1,
+        "type": "online",
+        "title": "Book an Appointment",
+        "description": "Visit the official UIDAI appointment booking portal. Select your state, city, and preferred Aadhaar Seva Kendra, then choose a date and time slot that suits you.",
+        "tip": "Booking online is highly recommended to avoid long waiting times at the center."
+      },
+      {
+        "stepNumber": 2,
+        "type": "offline",
+        "title": "Visit Aadhaar Seva Kendra",
+        "description": "Arrive at the selected Aadhaar Seva Kendra 15 minutes before your scheduled appointment. Bring original copies of your PoI, PoA, and DoB documents, along with the printed appointment slip.",
+        "tip": "The operator will scan your original documents and return them immediately. Do not leave them behind."
+      },
+      {
+        "stepNumber": 3,
+        "type": "offline",
+        "title": "Biometric Data Capture",
+        "description": "An operator will capture your iris scan (both eyes), fingerprint scan (all ten fingers), and take your live digital photograph.",
+        "tip": "Keep your eyes open wide and blink as little as possible for a clear iris scan."
+      },
+      {
+        "stepNumber": 4,
+        "type": "offline",
+        "title": "Collect Acknowledgment Slip",
+        "description": "Collect the generated Acknowledgment Slip from the desk operator. This slip contains your 14-digit Enrollment ID (EID) and timestamp.",
+        "tip": "Keep this slip very safe! You can use the EID to track your status and download your e-Aadhaar online."
+      }
+    ]
+  },
+  {
+    "docId": "pan-card",
+    "category": "identity",
+    "icon": "CreditCard",
+    "isActive": true,
+    "info": {
+      "title": "PAN Card",
+      "description": "Permanent Account Number (PAN) is a ten-character alphanumeric identifier issued by the Income Tax Department of India to any person who applies for it or to whom the department allots a number.",
+      "tagline": "Your Essential Financial Identity"
+    },
+    "requirements": [
+      {
+        "order": 1,
+        "name": "Proof of Identity (PoI)",
+        "description": "A valid ID document showing your legal name and photograph.",
+        "examples": [
+          "Aadhaar Card",
+          "Voter ID Card",
+          "Passport",
+          "Driving License"
+        ],
+        "howToGet": "Apply for Aadhaar or Voter ID first if you don't have them."
+      },
+      {
+        "order": 2,
+        "name": "Proof of Address (PoA)",
+        "description": "A document detailing your permanent residence.",
+        "examples": [
+          "Aadhaar Card",
+          "Electricity Bill",
+          "Bank Account Statement",
+          "Post Office Passbook"
+        ],
+        "howToGet": "Available from banks, electricity boards, or via Aadhaar Card."
+      },
+      {
+        "order": 3,
+        "name": "Proof of Date of Birth (DoB)",
+        "description": "Official proof verifying your birth date.",
+        "examples": [
+          "Aadhaar Card",
+          "Birth Certificate",
+          "Matriculation (10th) Certificate",
+          "Passport"
+        ],
+        "howToGet": "Get from school board, municipal registrar, or Aadhaar."
+      }
+    ],
+    "externalLinks": [
+      {
+        "label": "NSDL Portal (Apply Online)",
+        "url": "https://www.tin-nsdl.com/",
+        "type": "official"
+      },
+      {
+        "label": "UTIITSL Portal",
+        "url": "https://www.pan.utiitsl.com/",
+        "type": "official"
+      },
+      {
+        "label": "PAN Query Helpline",
+        "url": "tel:18001801961",
+        "type": "helpline"
+      }
+    ],
+    "applySteps": [
+      {
+        "stepNumber": 1,
+        "type": "online",
+        "title": "Fill out Form 49A",
+        "description": "Visit the NSDL or UTIITSL website, select 'New PAN - Indian Citizen (Form 49A)', fill in your personal details, and choose physical card dispatch.",
+        "tip": "If your Aadhaar is linked to your mobile, you can use paperless e-KYC for instant e-PAN generation!"
+      },
+      {
+        "stepNumber": 2,
+        "type": "online",
+        "title": "Pay Application Fee",
+        "description": "Pay the required processing fee online (approximately ₹107 for dispatch within India) using Net Banking, Debit/Credit Card, or UPI.",
+        "tip": "Download and print the payment receipt and completed Form 49A for your records."
+      },
+      {
+        "stepNumber": 3,
+        "type": "both",
+        "title": "Submit Documents / e-Sign",
+        "description": "If you chose e-KYC, verify with Aadhaar OTP. If you chose physical submission, print Form 49A, attach two passport-sized photographs, sign it, and mail it to NSDL/UTIITSL office with self-attested documents within 15 days.",
+        "tip": "For paperless application, make sure your Aadhaar matches your details exactly."
+      },
+      {
+        "stepNumber": 4,
+        "type": "online",
+        "title": "Receive PAN Card",
+        "description": "Your application is processed, and your permanent account number is allocated. An e-PAN is sent to your registered email in 2-3 days, and the physical card is delivered to your address in 10-15 days.",
+        "tip": "Keep track of your dispatch status using the 15-digit Acknowledgment Number provided after payment."
+      }
+    ]
+  }
+]
