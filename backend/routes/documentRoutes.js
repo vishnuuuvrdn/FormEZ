@@ -9,10 +9,14 @@ const {
   updateDocument,
   toggleActiveStatus,
   deleteDocument,
+  searchDocuments,
+  getRelatedDocuments,
 } = require("../controllers/documentController");
 
 router.get("/", getAllDocuments);
 router.get("/admin", getAllAdminDocuments);
+router.get("/search", searchDocuments);
+router.get("/:docId/related", getRelatedDocuments);
 router.get("/:docId", getDocumentById);
 router.get("/category/:cat", getDocumentsByCategory);
 router.post("/", createDocument);

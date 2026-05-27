@@ -122,6 +122,95 @@ const deleteDocument = async (req, res) => {
   }
 };
 
+//Search documents
+const searchDocuments = async (req, res) => {
+  try {
+    const query = req.query.q;
+
+    if (!query) {
+      return res.status(400).json({
+        success: false,
+        message: "Search query is required",
+      });
+    }
+
+    const documents = await Document.find({
+      isActive: true,
+      $or: [
+        {
+          "info.title": {
+            $regex: query,
+            $options: "i",
+          },
+        },
+        {
+          "info.description": {
+            $regex: query,
+            $options: "i",
+          },
+        },
+        {
+          category: {
+            $regex: query,
+            $options: "i",
+          },
+        },
+      ],
+    }).select("docId category icon info");
+
+    res.status(200).json({
+      success: true,
+      count: documents.length,
+      data: documents,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+// Related documents
+const getRelatedDocuments = async (req, res) => {
+  try {
+    const { docId } = req.params;
+
+    // Find current document
+    const currentDocument = await Document.findOne({
+      docId,
+      isActive: true,
+    });
+
+    if (!currentDocument) {
+      return res.status(404).json({
+        success: false,
+        message: "Document not found",
+      });
+    }
+
+    // Find related docs from same category
+    const relatedDocuments = await Document.find({
+      category: currentDocument.category,
+      docId: { $ne: docId },
+      isActive: true,
+    }).select("docId category icon info");
+
+    res.status(200).json({
+      success: true,
+      count: relatedDocuments.length,
+      data: relatedDocuments,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
 module.exports = {
   getAllDocuments,
   getAllAdminDocuments,
@@ -131,4 +220,6 @@ module.exports = {
   updateDocument,
   toggleActiveStatus,
   deleteDocument,
+  searchDocuments,
+  getRelatedDocuments,
 };
