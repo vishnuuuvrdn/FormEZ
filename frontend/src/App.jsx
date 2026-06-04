@@ -1,15 +1,20 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import DocumentPage from "./pages/DocumentPage";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { ToastProvider, ToastContainer } from "./components/Toast";
+import AppRoutes from "./routes";
 
-
-export default function App(){
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<HomePage/>} />
-                <Route path="/document/:docId" element={<DocumentPage />} />
-            </Routes>
-        </BrowserRouter>
-    )
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ThemeProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <AppRoutes />
+            <ToastContainer />
+          </ToastProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  );
 }

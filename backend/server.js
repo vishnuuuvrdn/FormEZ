@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const documentRoutes = require("./routes/documentRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 dotenv.config();
 
@@ -14,8 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/documents", documentRoutes);
+app.use("/api/auth", authRoutes);
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("FormEZ Backend API is running successfully");
 });
 
