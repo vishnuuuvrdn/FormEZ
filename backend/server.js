@@ -11,7 +11,10 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://formez.pages.dev",
+  credentials : true  
+}));
 app.use(express.json());
 
 app.use("/api/documents", documentRoutes);
