@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { FileText, Search, ChevronDown, ArrowRight, X, Sun, Moon } from "lucide-react";
+import { FileText, Search, ChevronDown, ArrowRight, X, Sun, Moon, Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import * as documentService from "../services/documentService";
 import { useTheme } from "../context/ThemeContext";
@@ -54,6 +54,7 @@ const GH = () => (
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const { pathname } = useLocation();
@@ -69,6 +70,7 @@ export default function NavBar() {
 
   useEffect(() => {
     setCatOpen(false);
+    setMobileMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -121,7 +123,7 @@ export default function NavBar() {
             </div>
           </Link>
 
-          {/* Search Box */}
+          {/* Search Box - Desktop */}
           <div className="relative flex-1 max-w-sm hidden md:block">
             <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border bg-surface-muted focus-within:border-accent focus-within:bg-surface focus-within:ring-1 focus-within:ring-accent transition-all duration-200 min-h-[40px]">
               <Search size={14} className="text-text-secondary shrink-0" />
@@ -165,8 +167,8 @@ export default function NavBar() {
             )}
           </div>
 
-          {/* Action Links */}
-          <div className="flex items-center gap-2.5">
+          {/* Action Links - Desktop */}
+          <div className="hidden md:flex items-center gap-2.5">
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
@@ -256,8 +258,124 @@ export default function NavBar() {
               Admin Center <ArrowRight size={12} strokeWidth={2.5} />
             </Link>
           </div>
+
+          {/* Action Controls - Mobile */}
+          <div className="flex items-center gap-2.5 md:hidden">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="text-text-secondary hover:text-accent hover:bg-surface-muted border border-border p-2.5 rounded-xl transition-all duration-150 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+              title={theme === "dark" ? "Switch to Light parchment" : "Switch to Dark charcoal"}
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+
+            {/* Hamburger Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-text-secondary hover:text-accent hover:bg-surface-muted border border-border p-2.5 rounded-xl transition-all duration-150 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+              title="Open menu"
+              aria-label="Open menu"
+            >
+              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Drawer Slide-Down */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-border bg-surface shadow-xl animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <div className="p-4 space-y-4">
+            {/* Mobile Search Box */}
+            <div className="relative">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-border bg-surface-muted focus-within:border-accent focus-within:bg-surface focus-within:ring-1 focus-within:ring-accent transition-all duration-200 min-h-[44px]">
+                <Search size={14} className="text-text-secondary shrink-0" />
+                <input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search documents, guidelines…"
+                  className="bg-transparent text-sm text-text-primary placeholder-text-secondary/50 outline-none w-full"
+                />
+                {search && (
+                  <button
+                    onClick={() => setSearch("")}
+                    className="text-text-secondary hover:text-text-primary p-0.5 rounded-full hover:bg-surface-muted transition-colors cursor-pointer"
+                  >
+                    <X size={12} />
+                  </button>
+                )}
+              </div>
+
+              {searchResults.length > 0 && (
+                <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-surface border border-border shadow-xl max-h-48 overflow-y-auto p-2 z-50 rounded-xl">
+                  {searchResults.map((item) => (
+                    <Link
+                      key={item.docId}
+                      to={`/document/${item.docId}`}
+                      onClick={() => {
+                        setSearch("");
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-muted transition-colors group"
+                    >
+                      <div className="min-w-0">
+                        <div className="text-xs font-semibold text-text-primary truncate">
+                          {item.info.title}
+                        </div>
+                      </div>
+                      <ArrowRight size={12} className="text-text-secondary shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Categories Section */}
+            <div className="space-y-1">
+              <p className="text-[9px] font-bold tracking-widest text-text-secondary uppercase px-2 pb-1 border-b border-border mb-1.5">
+                Categories
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {NAV_CATEGORIES.map((c) => (
+                  <Link
+                    key={c.label}
+                    to={c.to}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl border border-border bg-surface-muted/40 hover:bg-surface-muted transition-colors"
+                  >
+                    <span className="text-base leading-none select-none">{c.icon}</span>
+                    <span className="text-xs font-bold text-text-primary">{c.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Links */}
+            <div className="pt-2 border-t border-border flex flex-col gap-2.5">
+              <Link
+                to={ROUTES.ADMIN_DASHBOARD}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-white bg-accent hover:bg-accent-hover rounded-xl px-4 py-3 transition-colors min-h-[44px]"
+              >
+                <span>Admin Center</span>
+                <ArrowRight size={13} strokeWidth={2.5} />
+              </Link>
+
+              <a
+                href="https://github.com/vishnuuuvrdn/FormEZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider text-text-secondary border border-border rounded-xl py-3 hover:bg-surface-muted transition-all min-h-[44px]"
+              >
+                <GH />
+                <span>View GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

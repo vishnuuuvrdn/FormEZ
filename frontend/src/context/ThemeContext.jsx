@@ -5,7 +5,7 @@ const ThemeContext = createContext(null);
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem("formez_theme");
-    return saved || "dark"; // Dark theme is the default theme
+    return saved || "light"; // Light theme is the default theme
   });
 
   useEffect(() => {

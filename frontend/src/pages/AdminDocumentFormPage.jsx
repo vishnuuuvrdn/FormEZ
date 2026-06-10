@@ -483,33 +483,34 @@ export const AdminDocumentFormPage = () => {
                   {formData.requirements.map((req, idx) => (
                     <div
                       key={idx}
-                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4 relative"
+                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4"
                     >
-                      <button
-                        type="button"
-                        onClick={() => removeRequirement(idx)}
-                        className="absolute top-4 right-4 text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
-                        title="Remove requirement"
-                      >
-                        <Trash2 size={15} />
-                      </button>
-
-                      <div className="flex items-center gap-3">
-                        <Badge variant="status" value="active" className="select-none">
-                          Req #{req.order}
-                        </Badge>
-                        <div className="flex items-center gap-2 select-none">
-                          <input
-                            type="checkbox"
-                            id={`req-opt-${idx}`}
-                            checked={req.isOptional}
-                            onChange={(e) => handleRequirementChange(idx, "isOptional", e.target.checked)}
-                            className="w-4 h-4 rounded text-accent focus:ring-accent border-border"
-                          />
-                          <label htmlFor={`req-opt-${idx}`} className="text-xs font-bold uppercase tracking-wider text-text-secondary cursor-pointer">
-                            Mark Optional
-                          </label>
+                      <div className="flex items-center justify-between border-b border-border pb-3">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <Badge variant="status" value="active" className="select-none">
+                            Req #{req.order}
+                          </Badge>
+                          <div className="flex items-center gap-2 select-none">
+                            <input
+                              type="checkbox"
+                              id={`req-opt-${idx}`}
+                              checked={req.isOptional}
+                              onChange={(e) => handleRequirementChange(idx, "isOptional", e.target.checked)}
+                              className="w-4 h-4 rounded text-accent focus:ring-accent border-border"
+                            />
+                            <label htmlFor={`req-opt-${idx}`} className="text-xs font-bold uppercase tracking-wider text-text-secondary cursor-pointer">
+                              Mark Optional
+                            </label>
+                          </div>
                         </div>
+                        <button
+                          type="button"
+                          onClick={() => removeRequirement(idx)}
+                          className="text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center border border-border md:border-transparent hover:border-border"
+                          title="Remove requirement"
+                        >
+                          <Trash2 size={15} />
+                        </button>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -582,16 +583,21 @@ export const AdminDocumentFormPage = () => {
                   {formData.externalLinks.map((link, idx) => (
                     <div
                       key={idx}
-                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4 relative"
+                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4"
                     >
-                      <button
-                        type="button"
-                        onClick={() => removeExternalLink(idx)}
-                        className="absolute top-4 right-4 text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
-                        title="Remove link"
-                      >
-                        <Trash2 size={15} />
-                      </button>
+                      <div className="flex items-center justify-between border-b border-border pb-3">
+                        <Badge variant="status" value="active" className="select-none">
+                          Link #{idx + 1}
+                        </Badge>
+                        <button
+                          type="button"
+                          onClick={() => removeExternalLink(idx)}
+                          className="text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center border border-border md:border-transparent hover:border-border"
+                          title="Remove link"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <Input
@@ -670,21 +676,20 @@ export const AdminDocumentFormPage = () => {
                   {formData.applySteps.map((step, idx) => (
                     <div
                       key={idx}
-                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4 relative"
+                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4"
                     >
-                      <button
-                        type="button"
-                        onClick={() => removeApplyStep(idx)}
-                        className="absolute top-4 right-4 text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
-                        title="Remove step"
-                      >
-                        <Trash2 size={15} />
-                      </button>
-
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-between border-b border-border pb-3">
                         <Badge variant="status" value="active" className="select-none">
                           Step #{step.stepNumber}
                         </Badge>
+                        <button
+                          type="button"
+                          onClick={() => removeApplyStep(idx)}
+                          className="text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center border border-border md:border-transparent hover:border-border"
+                          title="Remove step"
+                        >
+                          <Trash2 size={15} />
+                        </button>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -777,16 +782,21 @@ export const AdminDocumentFormPage = () => {
                   {formData.faqs.map((faq, idx) => (
                     <div
                       key={idx}
-                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4 relative"
+                      className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-4"
                     >
-                      <button
-                        type="button"
-                        onClick={() => removeFaq(idx)}
-                        className="absolute top-4 right-4 text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
-                        title="Remove FAQ"
-                      >
-                        <Trash2 size={15} />
-                      </button>
+                      <div className="flex items-center justify-between border-b border-border pb-3">
+                        <Badge variant="status" value="active" className="select-none">
+                          FAQ #{idx + 1}
+                        </Badge>
+                        <button
+                          type="button"
+                          onClick={() => removeFaq(idx)}
+                          className="text-[#A62B2B] hover:bg-[#FBF1F1] dark:hover:bg-[#2C1515] p-2 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center border border-border md:border-transparent hover:border-border"
+                          title="Remove FAQ"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
 
                       <Input
                         label="FAQ Question"

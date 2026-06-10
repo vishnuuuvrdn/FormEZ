@@ -5,8 +5,7 @@ import { useIsMobile } from "../utils/useIsMobile";
 import { useAuth } from "../utils/useAuth";
 import { ROUTES } from "../utils/constants";
 
-export const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+export const Sidebar = ({ collapsed, setCollapsed }) => {
   const isMobile = useIsMobile();
   const { pathname } = useLocation();
   const { logout } = useAuth();

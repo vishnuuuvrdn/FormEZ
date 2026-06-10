@@ -11,7 +11,7 @@ export default function HomePage() {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  
+
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("cat") || "";
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,7 +30,9 @@ export default function HomePage() {
           setDocuments(response.data);
         }
       } catch (err) {
-        setError("Failed to fetch documents! Please ensure the backend is running.");
+        setError(
+          "Failed to fetch documents! Please ensure the backend is running.",
+        );
       } finally {
         setLoading(false);
       }
@@ -62,7 +64,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-bg">
       <NavBar />
-      
+
       <div className="max-w-6xl mx-auto px-5 py-10 md:py-16">
         {/* Editorial Heading */}
         <div className="max-w-2xl mb-12">
@@ -73,7 +75,9 @@ export default function HomePage() {
             Government Documents Made Simple.
           </h1>
           <p className="text-text-secondary text-sm md:text-base leading-relaxed mt-4">
-            Get clear, step-by-step guidance on gathering requirements, filing official links, and executing application steps for Indian public systems.
+            Get clear, step-by-step guidance on gathering requirements, filing
+            official links, and executing application steps for Indian public
+            systems.
           </p>
         </div>
 
@@ -129,7 +133,10 @@ export default function HomePage() {
           // Renders animated grid skeletons
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-surface border border-border rounded-2xl p-6 space-y-4">
+              <div
+                key={i}
+                className="bg-surface border border-border rounded-2xl p-6 space-y-4"
+              >
                 <div className="flex justify-between items-center">
                   <Skeleton variant="rectangle" width="w-12" height="h-12" />
                   <Skeleton width="w-20" height="h-5" />
@@ -147,7 +154,9 @@ export default function HomePage() {
         ) : error ? (
           // Renders error message panel
           <div className="bg-[#FBF1F1] dark:bg-[#2C1515] border border-danger/30 text-[#A62B2B] dark:text-[#E86D6D] p-6 rounded-2xl max-w-xl mx-auto text-center shadow-sm">
-            <h3 className="font-bold text-lg font-serif">Something went wrong</h3>
+            <h3 className="font-bold text-lg font-serif">
+              Something went wrong
+            </h3>
             <p className="text-sm mt-1 leading-relaxed">{error}</p>
           </div>
         ) : filteredDocuments.length === 0 ? (
@@ -160,7 +169,8 @@ export default function HomePage() {
               No guides match criteria
             </h3>
             <p className="text-sm text-text-secondary leading-relaxed mt-2 max-w-sm">
-              We couldn't find any guidelines matching your category or search filter. Try broadening your keywords.
+              We couldn't find any guidelines matching your category or search
+              filter. Try broadening your keywords.
             </p>
           </div>
         ) : (

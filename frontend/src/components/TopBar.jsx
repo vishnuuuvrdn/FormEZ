@@ -5,7 +5,7 @@ import { useAuth } from "../utils/useAuth";
 import { useTheme } from "../context/ThemeContext";
 import { ROUTES } from "../utils/constants";
 
-export const TopBar = ({ title = "Dashboard" }) => {
+export const TopBar = ({ title = "Dashboard", collapsed = false }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
@@ -28,7 +28,11 @@ export const TopBar = ({ title = "Dashboard" }) => {
   };
 
   return (
-    <header className="h-16 bg-surface border-b border-border fixed top-0 right-0 left-0 md:left-auto md:w-[calc(100%-16rem)] z-30 flex items-center justify-between px-6 shadow-sm">
+    <header
+      className={`h-16 bg-surface border-b border-border fixed top-0 right-0 left-0 md:left-auto z-30 flex items-center justify-between px-6 shadow-sm transition-all duration-300 ${
+        collapsed ? "md:w-[calc(100%-5rem)]" : "md:w-[calc(100%-16rem)]"
+      }`}
+    >
       {/* Page Title & Breadcrumbs */}
       <div className="flex flex-col">
         <div className="flex items-center gap-1 text-[11px] font-bold text-text-secondary uppercase tracking-widest select-none">
